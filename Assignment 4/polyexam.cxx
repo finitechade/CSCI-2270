@@ -280,12 +280,14 @@ double test4( )
 			return 0;
     }
     cout << "Testing previous_term(0)." << endl;
-    if (p.previous_term(0) != UINT_MAX)
-        return 0;
+    if (p.previous_term(0) != UINT_MAX){
+	    return 0;
+    }
     p.assign_coef(0,0);
-    if (p.previous_term(1) != UINT_MAX)
+    if (p.previous_term(1) != UINT_MAX){
 	return 0;
-	
+    }
+
     return POINTS[4];
 }
 
