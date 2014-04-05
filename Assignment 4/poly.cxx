@@ -9,15 +9,20 @@ namespace main_savitch_5
 		EPSILON = std::numeric_limits<double>::epsilon();
 		// write the rest
 		if(fabs(c) > EPSILON){
-			head_ptr = new polynode();
-			tail_ptr = new polynode(c,exponent);
+	 		tail_ptr = new polynode();
+			head_ptr = new polynode(c,exponent);
 			head_ptr->set_fore(tail_ptr);
 			tail_ptr->set_back(head_ptr);
 			recent_ptr = tail_ptr;
+			current_degree = exponent;
+
+
+
 
 		}else{
 			head_ptr = new polynode();
 			tail_ptr = head_ptr;
+			current_degree = 0;
 		}
 	}
 
@@ -27,7 +32,7 @@ namespace main_savitch_5
 			// store machine epsilon
 			EPSILON = std::numeric_limits<double>::epsilon();
 			// write the rest
-			
+
 			while(tail_ptr != head_ptr){
 				recent_ptr = tail_ptr;
 				tail_ptr = tail_ptr->back();
@@ -100,6 +105,7 @@ namespace main_savitch_5
 	double polynomial::coefficient(unsigned int exponent) const
 	{
 		set_recent(exponent);
+
 		return recent_ptr->coef();
 	}
 
@@ -158,23 +164,12 @@ namespace main_savitch_5
 	void polynomial::set_recent(unsigned int exponent) const
 	{
 
-		//if the exponent location is maybe closer to the the end or beginning
-		if((tail_ptr->exponent()+ head_ptr->exponent())/2 < exponent){
-			recent_ptr = tail_ptr;
-			while(recent_ptr->back() != nullptr && recent_ptr->exponent() > exponent){
-				recent_ptr = recent_ptr->back();
-			}
-			if(exponent > recent_ptr->exponent()){
-				recent_ptr = recent_ptr->fore();
-			}
-		}else{
-			recent_ptr = head_ptr;
-			while(recent_ptr->fore() != nullptr && recent_ptr->exponent() > exponent){
-				recent_ptr = recent_ptr->fore();
-			}
-			if(exponent < recent_ptr->exponent()){
-				recent_ptr = recent_ptr->back();
-			}
+		recent_ptr = head_ptr;
+		while(recent_ptr->fore() != nullptr && recent_ptr->exponent() < exponent){
+			recent_ptr = recent_ptr->fore();
+		}
+		if(exponent < recent_ptr->exponent() ){
+			recent_ptr = recent_ptr->back();
 		}
 	}
 
@@ -222,12 +217,12 @@ namespace main_savitch_5
 	}
 
 	void polynomial::find_root(
-		double& answer,
-		bool& success,
-		unsigned int& iterations,
-		double guess,
-		unsigned int maximum_iterations,
-		double epsilon) const
+			double& answer,
+			bool& success,
+			unsigned int& iterations,
+			double guess,
+			unsigned int maximum_iterations,
+			double epsilon) const
 	{
 	}
 }
