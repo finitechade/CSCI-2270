@@ -238,9 +238,9 @@ namespace main_savitch_5
 	};
 	
 	// NON-MEMBER BINARY OPERATORS
-	polynomial operator +(const polynomial& p1, const polynomial& p2);
-	polynomial operator -(const polynomial& p1, const polynomial& p2);
-	polynomial operator *(const polynomial& p1, const polynomial& p2);
+	 polynomial operator +(const polynomial& p1, const polynomial& p2);
+	 polynomial operator -(const polynomial& p1, const polynomial& p2);
+	 polynomial operator *(const polynomial& p1, const polynomial& p2);
 	
 	// NON-MEMBER OUTPUT FUNCTIONS
 	std::ostream& operator << (std::ostream& out, const polynomial& p);

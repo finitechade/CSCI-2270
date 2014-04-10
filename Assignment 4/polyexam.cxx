@@ -310,7 +310,6 @@ double test5( )
     p.assign_coef(0, TESTSIZE/2); c[TESTSIZE/2] = q.coefficient(TESTSIZE/2);
     p.assign_coef(((rand( ) % 1000)/100.0)+1, TESTSIZE);
     c[TESTSIZE] = p.coefficient(TESTSIZE);
-    
     if (!correct(p+q, TESTSIZE, c)) return 0;
 
     return POINTS[5];
@@ -529,14 +528,13 @@ int main( )
     sum += run_a_test(2, DESCRIPTION[2], test2, POINTS[2]);
     sum += run_a_test(3, DESCRIPTION[3], test3, POINTS[3]);
     sum += run_a_test(4, DESCRIPTION[4], test4, POINTS[4]);
+    sum += run_a_test(10, DESCRIPTION[10], test10, POINTS[10]);
+    sum += run_a_test(11, DESCRIPTION[11], test11, POINTS[11]);
     sum += run_a_test(5, DESCRIPTION[5], test5, POINTS[5]);
     sum += run_a_test(6, DESCRIPTION[6], test6, POINTS[6]);
     sum += run_a_test(7, DESCRIPTION[7], test7, POINTS[7]);
     sum += run_a_test(8, DESCRIPTION[8], test8, POINTS[8]);
     sum += run_a_test(9, DESCRIPTION[9], test9, POINTS[9]);
-    sum += run_a_test(10, DESCRIPTION[10], test10, POINTS[10]);
-    sum += run_a_test(11, DESCRIPTION[11], test11, POINTS[11]);
-
     cout << "If you submit this to Dora now, you will have\n";
     cout << sum << " points out of the ";
     cout << POINTS[0];
