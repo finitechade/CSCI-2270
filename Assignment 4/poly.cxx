@@ -311,7 +311,19 @@ namespace main_savitch_5
 	}
 
 	void polynomial::find_root( double& answer, bool& success, unsigned int& iterations, double guess, unsigned int maximum_iterations, double epsilon) const {
+		answer = guess;
+		iterations = 0;
 
-			
+		while( fabs(derivative().eval(answer)) >= epsilon && fabs(eval(answer)) >= epsilon &&  iterations < maximum_iterations){
+			answer = answer - eval(answer)/derivative().eval(answer);
+			iterations++;
+		}
+		//if the it reaches the max iterations or if the function becomes 'flat' as in the deriviative is 0 then it has failed
+		if(iterations == maximum_iterations || fabs(derivative().eval(answer)) < epsilon)
+		{
+			success = false;
+		}else{
+			success = true;
+		}
 	}
 }
